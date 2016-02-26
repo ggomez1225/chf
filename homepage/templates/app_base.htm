@@ -1,0 +1,31 @@
+<%inherit file="base.htm" />
+
+<%block name="navbar_list">
+  <li class="${ 'active' if request.dmp_router_page ==  'index' else ''}"><a href="/homepage/index">Home</a></li>
+  <li class="${ 'active' if request.dmp_router_page ==  'about' else ''}"><a href="/homepage/about">About</a></li>
+  <li class="${ 'active' if request.dmp_router_page ==  'contact' else ''}"><a href="/homepage/contact">Contact</a></li>
+  <li class="${ 'active' if request.dmp_router_page ==  'terms' else ''}"><a href="/homepage/terms">Terms</a></li>
+  <li class="${ 'active' if request.dmp_router_page ==  'faq' else ''}"><a href="/homepage/faq">FAQ's</a></li>
+  <li class="${ 'active' if request.dmp_router_page ==  'sections' else ''}"><a href="/homepage/sections">Sections</a></li>
+</%block><!-- navbar_list -->
+
+<%block name="navbar_list_right">
+
+    %if request.user.is_authenticated():
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome ${ request.user.first_name} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/account/manage">My Account</a></li>
+            <li><a href="#">My preferences</a></li>
+            <li><a href="#">Payment Info</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/account/logout">Logout</a></li>
+          </ul>
+        </li>
+    %else:
+        <!-- Do not add a link to the login link, this is handled by the JavaScript, and ajax modal associated with the id -->
+        <li><a href="/account/signup">Register as new user</a></li>
+        <li><a href="#" type="submit" value="send" id="loginbutton">Login</a></li>
+    %endif
+
+</%block><!-- navbar_list_right -->

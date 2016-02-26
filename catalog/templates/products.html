@@ -1,0 +1,56 @@
+<%! from catalog import models as cmod %>
+<%inherit file="app_base.htm" />
+
+<%block name="title">Current Users</%block>
+
+<%block name="content">
+    <p class="text-right"><a href="/catalog/products.create/" class="btn btn-primary">Create Object</a></p>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Picture</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        %for product in products:
+            <tr>
+                <td>${ product.name }</td>
+                <td>${ product.__class__.__name__ }</td>
+                <td><img src="${ STATIC_URL }catalog/media/product_images/${ product.image }" style="height:100px"/></td>
+                <td>
+                  %if isinstance(product, cmod.BulkProduct):
+                    <span class="quantity">14</span>
+                    <a href="/catalog/products.get_quantity/${product.id}" class="glyphicon glyphicon-refresh refresh_button"></a>
+                  %endif
+                </td>
+                <td>
+                    <a href="/catalog/products.edit/${ product.id }">Edit</a>
+                    |
+                    <a href="/catalog/products.delete/${ product.id }" class="delete_button">Delete</a>
+                </td>
+            </tr>
+        %endfor
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+                </div><!-- Modal Header -->
+                <div class="modal-body">
+                    Delete this product?
+                </div>
+                <div class="modal-footer">
+                    <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</%block>

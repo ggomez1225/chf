@@ -1,0 +1,39 @@
+#message {
+  background-color: grey;
+  display: block;
+}
+
+.navbar{
+  background-color: yellow;
+  display: block;
+}
+
+#content_full{
+  background-color: lightblue;
+  padding: 50px;
+}
+
+#alert_message{
+  display: block;
+  top: 125px;
+  z-index: 1;
+}
+
+#content_left {
+  background-color: gold;
+  padding: 50px;
+}
+
+#content {
+  padding: 50px;
+  background-color: orange;
+}
+
+#content_right {
+  padding: 50px;
+  background-color: silver;
+}
+
+.navbar-fixed-bottom{
+  background-color: lightgreen;
+}

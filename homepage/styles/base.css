@@ -1,0 +1,31 @@
+#message {
+  display: none;
+  text-align: center;
+}
+
+#alert_message{
+  display: none;
+  position: fixed;
+  top: 56px;
+  right: 12px;
+}
+
+#content_full{
+  text-align: center;
+  /*display: none;*/
+}
+
+#content_left {
+  padding-top: 40px;
+  padding-bottom: 52px;
+}
+
+#content {
+  padding-top: 40px;
+  padding-bottom: 52px;
+}
+
+#content_right {
+  padding-top: 40px;
+  padding-bottom: 52px;
+}

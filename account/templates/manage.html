@@ -1,0 +1,60 @@
+<%inherit file="app_base.htm" />
+
+<%block name="content">
+  <form class="form-horizontal" method="POST">
+    <fieldset>
+
+        <!-- Form Name -->
+        ## <legend>Contact Us</legend>
+        ##
+        ## <!-- Text input-->
+        ## <div class="form-group">
+        ##   <label class="col-md-4 control-label" for="full_name">Full Name</label>
+        ##   <div class="col-md-4">
+        ##   <input id="full_name" name="full_name" type="text" placeholder="John Doe" class="form-control input-md" required="">
+        ##   <span class="help-block">Please enter your full name</span>
+        ##   </div>
+        ## </div>
+        ##
+        ## <!-- Text input-->
+        ## <div class="form-group">
+        ##   <label class="col-md-4 control-label" for="email">Email Address</label>
+        ##   <div class="col-md-4">
+        ##   <input id="email" name="email" type="text" placeholder="John@doe.com" class="form-control input-md">
+        ##   <span class="help-block">Please enter your email address so that we can respond to your inquiry.</span>
+        ##   </div>
+        ## </div>
+        ##
+        ## <!-- Text input-->
+        ## <div class="form-group">
+        ##   <label class="col-md-4 control-label" for="subject">Subject:</label>
+        ##   <div class="col-md-5">
+        ##   <input id="subject" name="subject" type="text" placeholder="Questions about Colonial Heritage Foundation" class="form-control input-md">
+        ##
+        ##   </div>
+        ## </div>
+        ##
+        ## <!-- Textarea -->
+        ## <div class="form-group">
+        ##   <label class="col-md-4 control-label" for="comments">Comments</label>
+        ##   <div class="col-md-4">
+        ##     <textarea class="form-control" id="comments" name="comments" placeholder="I have a question about the Colonial Heritage Foundation."></textarea>
+        ##   </div>
+        ## </div>
+        ${ManageForm.as_p()}
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="submit"></label>
+          <div class="col-md-4">
+            <button id="submit" name="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+
+    </fieldset>
+    </form>
+
+</%block><!-- content -->
+
+<%block name="content_right">
+  <p><a href="/account/ChangePassword">Click here to change your password</a></p>
+</%block>

@@ -1,0 +1,47 @@
+<%! from event import models as emod %>
+<%inherit file="app_base.htm" />
+
+<%block name="title">Current Areas</%block>
+
+<%block name="content">
+    <!-- Area -->
+    <p class="text-right"><a href="/event/areas.create/" class="btn btn-primary">Create Area</a></p>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Place Number</th>
+            <th>Actions</th>
+        </tr>
+        %for area in areas:
+            <tr>
+                <td>${ area.name }</td>
+                <td>${ area.place_number }</td>
+                <td>
+                    <a href="/event/areas.edit/${ area.id }">Edit</a>
+                    |
+                    <a href="/event/areas.delete/${ area.id }" class="delete_button">Delete</a>
+                </td>
+            </tr>
+        %endfor
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+                </div><!-- Modal Header -->
+                <div class="modal-body">
+                    Are you sure you would like to Delete?
+                </div>
+                <div class="modal-footer">
+                    <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</%block>

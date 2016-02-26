@@ -1,0 +1,18 @@
+<%! from event import models as emod %>
+<%inherit file="app_base.htm" />
+
+<%block name="content">
+  <form class="form-horizontal" method="POST">
+    <fieldset>
+        ${ form.as_p()}
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="submit"></label>
+          <div class="col-md-4">
+            <button id="submit" name="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+    </fieldset>
+  </form>
+
+</%block><!-- content -->

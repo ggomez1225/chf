@@ -1,0 +1,49 @@
+<%! from event import models as emod %>
+<%inherit file="app_base.htm" />
+
+<%block name="title">Current Venues</%block>
+
+<%block name="content">
+    <!-- Venue -->
+    <p class="text-right"><a href="/event/venues.create/" class="btn btn-primary">Create Venue</a></p>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Actions</th>
+        </tr>
+        %for venue in venues:
+            <tr>
+                <td>${ venue.name }</td>
+                <td>${ venue.city }</td>
+                <td>${ venue.state }</td>
+                <td>
+                    <a href="/event/venues.edit/${ venue.id }">Edit</a>
+                    |
+                    <a href="/event/venues.delete/${ venue.id }" class="delete_button">Delete</a>
+                </td>
+            </tr>
+        %endfor
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Please Confirm</h4>
+                </div><!-- Modal Header -->
+                <div class="modal-body">
+                    Are you sure you would like to Delete?
+                </div>
+                <div class="modal-footer">
+                    <a id="confirm_delete_button" href="" class="btn btn-danger">Delete</a>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</%block>

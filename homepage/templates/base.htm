@@ -1,0 +1,144 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
+<%! from django_mako_plus.controller import static_files %>
+<%  static_renderer = static_files.StaticRenderer(self) %>
+
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+
+    <link rel="shortcut icon" href="${STATIC_URL}homepage/media/images/ink-and-feather-quill-clipart.jpg">
+
+    <title>
+      <%block name="title">
+        homepage
+      </%block>
+    </title>
+
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <link rel="stylesheet" href="${STATIC_URL}homepage/media/bootstrap/css/bootstrap.min.css"/>
+    <!-- <link rel="stylesheet" href="${STATIC_URL}homepage/media/bootstrap/css/bootstrap-datetimepicker.min.css"/> -->
+    <link rel="stylesheet" href="${STATIC_URL}homepage/media/datepicker.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="${STATIC_URL}homepage/media/jquery.loadmodal.js"></script>
+    <script src="${STATIC_URL}homepage/media/jquery.form.min.js"></script>
+
+    ## render the css with the same name as this page
+    ${ static_renderer.get_template_css(request, context)  }
+
+  </head>
+  <body>
+    <%block name="main_body">
+
+      <div class="container-fluid" id="message">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>
+              <%block name="message">
+                Test message
+              </%block><!-- message -->
+            </h1>
+          </div>
+        </div>
+      </div><!-- Message -->
+
+      <header>
+        <%block name="main_header">
+
+          <%block name="alert">
+            <div class="alert alert-warning alert-dismissible" role="alert" id="alert_message">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </div>
+          </%block><!-- alert -->
+
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/homepage/index">
+                <%block name="navbar_brand">
+                  <img class="media-left media-object media-bottom" alt="CHF Logo" src="${STATIC_URL}homepage/media/images/CHFlogoH2.png" height="35"/>
+                </%block>
+                </a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <%block name="navbar_list">
+                    Test navbar_list
+                  </%block><!-- navbar_list -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <%block name="navbar_list_right">
+                    <li><a href="#">Login</a></li>
+                  </%block><!-- navbar_list_right -->
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+
+        </%block><!-- main_header -->
+      </header>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12" id="content_full">
+            <%block name="content_full">
+            </%block>
+          </div>
+        </div>
+      </div><!-- container-fluid -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2"  id="content_left">
+            <%block name="content_left">
+            </%block><!-- content_left -->
+          </div><!-- left -->
+          <div class="col-md-8" id="content">
+            <%block name="content">
+            </%block><!-- content -->
+          </div><!-- Center -->
+          <div class="col-md-2" id="content_right">
+            <%block name="content_right">
+            </%block><!-- content_right -->
+          </div><!-- Right -->
+        </div><!-- row -->
+      </div><!-- container -->
+
+      <footer>
+          <nav class="navbar navbar-default navbar-fixed-bottom">
+              <div class="container">
+                <%block name="footer">
+                  ##I'm breaking the rule here to avoid duplicating code.
+                  <%
+                    import datetime
+                    current_year = datetime.date.today()
+                  %>
+                  Copyright &copy; Colonial Heritage Foundation ${ current_year.year }
+                </%block><!-- footer -->
+              </div>
+            </nav>
+      </footer>
+    </%block><!-- main_body -->
+
+    ## My Bootstrap JavaScript link
+    <script src="${STATIC_URL}homepage/media/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="${STATIC_URL}homepage/media/bootstrap/js/bootstrap-datetimepicker.min.js"></script> -->
+    <script src="${STATIC_URL}homepage/media/bootstrap-datepicker.js"></script>
+    ## render the JS with the same name as this page
+    ${ static_renderer.get_template_js(request, context)  }
+
+  </body>
+</html>
